@@ -32,6 +32,7 @@ RUN set -ex; \
         imagemagick-dev \
         libwebp-dev \
         gmp-dev \
+        gnu-libiconv \
     ; \
     \
     docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp; \
@@ -101,6 +102,7 @@ VOLUME /var/www/html
 %%VARIANT_EXTRAS%%
 
 ENV NEXTCLOUD_VERSION %%VERSION%%
+ENV LD_PRELOAD=/usr/lib/preloadable_libiconv.so
 
 RUN set -ex; \
     apk add --no-cache --virtual .fetch-deps \
